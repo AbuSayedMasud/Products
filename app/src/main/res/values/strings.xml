@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LoginApp</string>
+    <string-array name="division_name">
+
+        <item>Dhaka</item>
+        <item>Rajshahi</item>
+        <item>Chittagong</item>
+        <item>Rangpur</item>
+        <item>Khulna</item>
+        <item>Barisal</item>
+        <item>Sylate</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
