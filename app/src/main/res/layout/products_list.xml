@@ -43,7 +43,7 @@
                 android:id="@+id/product_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Author"
+                android:text="Price:"
                 android:textSize="12sp" />
 
         </LinearLayout>
