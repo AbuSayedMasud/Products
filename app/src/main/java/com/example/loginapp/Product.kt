@@ -49,7 +49,6 @@ class Product: Fragment() {
             products?.let {
                 productList.clear()
                 productList.addAll(products.products)
-                productAdapter.notifyDataSetChanged()
             }
         })
 
