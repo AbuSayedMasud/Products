@@ -1,6 +1,8 @@
 package com.example.loginapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,8 @@ import com.example.loginapp.repository.ProductRepository
 import com.example.loginapp.viewmodel.ProductViewModel
 import com.example.loginapp.viewmodel.ProductViewModelFactory
 
-class Product: Fragment() {
+class Product : Fragment(), ProductAdapter.OnItemClickListener {
+
     private lateinit var binding: FragmentProductBinding
     private lateinit var productAdapter: ProductAdapter
     private lateinit var productViewModel: ProductViewModel
@@ -33,7 +36,6 @@ class Product: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val apiService = RetrofitHelper.getInstance().create(ApiService::class.java)
         val repository = ProductRepository(apiService)
         productViewModel = ViewModelProvider(
@@ -41,26 +43,38 @@ class Product: Fragment() {
             ProductViewModelFactory(repository)
         ).get(ProductViewModel::class.java)
 
-
         initializeRecyclerView()
-
 
         productViewModel.products.observe(viewLifecycleOwner, Observer { products ->
             products?.let {
-                productList.clear()
                 productList.addAll(products.products)
+                Log.d("tag", products.products.size.toString())
                 productAdapter.notifyDataSetChanged()
             }
         })
-
-
     }
 
     private fun initializeRecyclerView() {
-        productAdapter = ProductAdapter(productList)
+        productAdapter = ProductAdapter(productList, this)
         binding.recyclerProducts.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = productAdapter
         }
+    }
+
+    override fun onItemClick(product: Product) {
+
+        var intent=Intent( requireContext(),ProductDescription::class.java).apply {
+            putExtra("BRAND",product.brand)
+            putExtra("CATEGORY",product.category)
+            putExtra("DESCRIPTION",product.description)
+            putExtra("PRICE",product.price)
+            putExtra("TITLE",product.title)
+            putExtra("Image",product.thumbnail)
+            putExtra("Stock",product.stock.toString())
+            putExtra("Rating",product.rating.toString())
+
+        }
+        startActivity(intent)
     }
 }

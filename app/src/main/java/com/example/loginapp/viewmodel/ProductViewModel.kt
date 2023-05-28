@@ -12,14 +12,12 @@ import kotlinx.coroutines.launch
 class ProductViewModel(val repository: ProductRepository) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getcategory()
+            repository.getCategories()
         }
-    }
-    init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getProducts()
         }
     }
-    val category:LiveData<Categories> get()=repository.categorydata
-    val products:LiveData<ProductInfo> get()=repository.Productsdata
+    val category:LiveData<Categories> get()=repository.categoryLiveData
+    val products:LiveData<ProductInfo> get()=repository.productsLiveData
 }
