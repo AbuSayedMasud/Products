@@ -33,7 +33,7 @@ class Product: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize the ViewModel
+
         val apiService = RetrofitHelper.getInstance().create(ApiService::class.java)
         val repository = ProductRepository(apiService)
         productViewModel = ViewModelProvider(
@@ -41,10 +41,10 @@ class Product: Fragment() {
             ProductViewModelFactory(repository)
         ).get(ProductViewModel::class.java)
 
-        // Initialize RecyclerView
+
         initializeRecyclerView()
 
-        // Observe the product data from the ViewModel
+
         productViewModel.products.observe(viewLifecycleOwner, Observer { products ->
             products?.let {
                 productList.clear()

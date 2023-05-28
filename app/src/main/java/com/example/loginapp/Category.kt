@@ -25,7 +25,7 @@ class Category : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,7 +33,7 @@ class Category : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         categoryList = Categories()
-        // Initialize the ViewModel
+
         val apiService = RetrofitHelper.getInstance().create(ApiService::class.java)
         val repository = ProductRepository(apiService)
         productViewModel = ViewModelProvider(
@@ -41,7 +41,7 @@ class Category : Fragment() {
             ProductViewModelFactory(repository)
         ).get(ProductViewModel::class.java)
 
-        // Observe the category data from the ViewModel
+
         productViewModel.category.observe(viewLifecycleOwner, Observer { categories ->
             categories?.let {
                 categoryList = it
