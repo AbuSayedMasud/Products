@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">LoginApp</string>
+    <string name="username_description">Username: M A Sayed Masud</string>
+    <string name="email_description">Email: sayedmasssud1996@gmail.com</string>
+
     <string-array name="division_name">
 
         <item>Dhaka</item>
