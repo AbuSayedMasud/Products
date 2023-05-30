@@ -21,7 +21,9 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
+            android:exported="false"
+            android:label=""
+            />
         <activity
             android:name=".Registration"
             android:exported="false" />
